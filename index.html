@@ -2,8 +2,8 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>اخـتـࢪاق | سـحـب مـلـفات ءالمواقـع | HTML</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>اخـتـࢪاق | سـحـب مـواقـع | HTML</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
         
@@ -20,7 +20,6 @@
             overflow-x: hidden;
             min-height: 100vh;
             position: relative;
-            font-size: 14px; /* قاعدة أصغر للهواتف */
         }
 
         /* خلفية الماتريكس المتطورة */
@@ -31,21 +30,21 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.12;
+            opacity: 0.15;
             pointer-events: none;
         }
 
-        /* خطوط مسح الهولوغرام ثلاثية الأبعاد - أخف للهواتف */
+        /* خطوط مسح الهولوغرام ثلاثية الأبعاد */
         .hologram-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: repeating-linear-gradient(0deg, rgba(0,255,65,0.015) 0px, rgba(0,255,65,0.015) 2px, transparent 2px, transparent 6px);
+            background: repeating-linear-gradient(0deg, rgba(0,255,65,0.02) 0px, rgba(0,255,65,0.02) 2px, transparent 2px, transparent 6px);
             pointer-events: none;
             z-index: 1;
-            animation: scanVertical 12s linear infinite;
+            animation: scanVertical 8s linear infinite;
         }
 
         @keyframes scanVertical {
@@ -53,79 +52,79 @@
             100% { background-position: 0 100%; }
         }
 
-        /* حواف متوهجة - أكثر نعومة للهواتف */
+        /* حواف متوهجة دائرية */
         .glow-border {
             position: fixed;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
-            border: 1.5px solid rgba(0, 255, 65, 0.3);
-            border-radius: 30px;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid rgba(0, 255, 65, 0.3);
+            border-radius: 40px;
             pointer-events: none;
             z-index: 2;
-            box-shadow: 0 0 12px rgba(0,255,65,0.15), inset 0 0 12px rgba(0,255,65,0.05);
-            animation: borderPulse 4s infinite alternate;
+            box-shadow: 0 0 20px rgba(0,255,65,0.2), inset 0 0 20px rgba(0,255,65,0.1);
+            animation: borderPulse 3s infinite alternate;
         }
 
         @keyframes borderPulse {
-            0% { border-color: rgba(0, 255, 65, 0.2); box-shadow: 0 0 6px rgba(0,255,65,0.15);}
-            100% { border-color: rgba(0, 255, 65, 0.6); box-shadow: 0 0 20px rgba(0,255,65,0.4);}
+            0% { border-color: rgba(0, 255, 65, 0.2); box-shadow: 0 0 10px rgba(0,255,65,0.2);}
+            100% { border-color: rgba(0, 255, 65, 0.7); box-shadow: 0 0 40px rgba(0,255,65,0.5);}
         }
 
         .main-container {
             position: relative;
             z-index: 10;
-            max-width: 100%;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 12px 14px 20px;
-            width: 100%;
+            padding: 20px;
+            padding-bottom: 30px;
         }
 
-        /* رأس الصفحة مع عنوان 3D مصغر للهواتف */
+        /* رأس الصفحة مع عنوان 3D دوار */
         .header-3d {
             text-align: center;
-            margin: 15px 0 20px;
-            perspective: 500px;
+            margin: 30px 0 40px;
+            perspective: 800px;
         }
 
         .rotating-title {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(0,0,0,0.65);
-            backdrop-filter: blur(6px);
-            padding: 10px 18px;
-            border-radius: 60px;
+            gap: 18px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            padding: 15px 35px;
+            border-radius: 80px;
             border: 1px solid #0f0;
-            box-shadow: 0 0 18px rgba(0,255,65,0.3);
+            box-shadow: 0 0 30px rgba(0,255,65,0.4);
             animation: rotate3dTitle 6s infinite ease-in-out, titleGlow 2s infinite alternate;
             transform-style: preserve-3d;
         }
 
         @keyframes rotate3dTitle {
             0% { transform: rotateY(0deg) rotateX(0deg); }
-            25% { transform: rotateY(8deg) rotateX(4deg); }
-            75% { transform: rotateY(-8deg) rotateX(-4deg); }
+            25% { transform: rotateY(10deg) rotateX(5deg); }
+            75% { transform: rotateY(-10deg) rotateX(-5deg); }
             100% { transform: rotateY(0deg) rotateX(0deg); }
         }
 
         @keyframes titleGlow {
-            0% { text-shadow: 0 0 3px #0f0; box-shadow: 0 0 8px #0f0; }
-            100% { text-shadow: 0 0 12px #0f0; box-shadow: 0 0 24px #0f0; }
+            0% { text-shadow: 0 0 5px #0f0, 0 0 10px #0f0; box-shadow: 0 0 10px #0f0; }
+            100% { text-shadow: 0 0 20px #0f0, 0 0 30px #0f0; box-shadow: 0 0 40px #0f0; }
         }
 
         .icon-html {
-            width: 32px;
-            height: 32px;
-            filter: drop-shadow(0 0 4px #0f0);
+            width: 48px;
+            height: 48px;
+            filter: drop-shadow(0 0 8px #0f0);
             animation: iconPulse 2s infinite;
         }
 
         .title-text {
-            font-size: 1.1rem;
-            font-weight: 800;
-            letter-spacing: 2px;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 4px;
             background: linear-gradient(135deg, #0f0, #7fff00);
             -webkit-background-clip: text;
             background-clip: text;
@@ -133,135 +132,144 @@
         }
 
         @keyframes iconPulse {
-            0% { filter: drop-shadow(0 0 2px #0f0); transform: scale(1);}
-            100% { filter: drop-shadow(0 0 8px #0f0); transform: scale(1.04);}
+            0% { filter: drop-shadow(0 0 3px #0f0); transform: scale(1);}
+            100% { filter: drop-shadow(0 0 15px #0f0); transform: scale(1.05);}
         }
 
-        /* شبكة المربعات - عمودية بالكامل للهواتف (مكدسة) */
+        /* شبكة المربعات المرتبة */
         .cards-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-            margin: 20px 0 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 30px 0 40px;
         }
 
         .neon-card {
-            background: rgba(0, 20, 0, 0.65);
-            backdrop-filter: blur(10px);
-            border: 1px solid #0f0;
-            border-radius: 24px;
-            padding: 14px;
-            box-shadow: 0 0 12px rgba(0,255,65,0.2);
-            transition: all 0.2s ease;
+            background: rgba(0, 20, 0, 0.55);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid #0f0;
+            border-radius: 28px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0,255,65,0.2), inset 0 0 15px rgba(0,255,65,0.05);
+            transition: all 0.3s ease;
+            animation: cardGlow 3s infinite alternate;
         }
-        
+
         .neon-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 18px rgba(0,255,65,0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 0 35px rgba(0,255,65,0.5);
+            border-color: #7fff00;
+        }
+
+        @keyframes cardGlow {
+            0% { box-shadow: 0 0 5px rgba(0,255,65,0.2);}
+            100% { box-shadow: 0 0 25px rgba(0,255,65,0.5);}
         }
 
         .card-title {
-            font-size: 0.95rem;
+            font-size: 1.3rem;
             font-weight: bold;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             text-align: center;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             border-bottom: 1px solid #0f0;
             display: inline-block;
             width: 100%;
-            padding-bottom: 6px;
+            padding-bottom: 8px;
         }
 
         .code-area {
             background: #000000aa;
-            border-radius: 16px;
-            padding: 12px;
+            border-radius: 18px;
+            padding: 15px;
             font-family: 'Courier New', monospace;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             color: #0f0;
             direction: ltr;
             text-align: left;
             overflow-x: auto;
             white-space: pre-wrap;
             word-break: break-all;
-            max-height: 240px;
+            max-height: 320px;
             overflow-y: auto;
             border: 1px solid #0f0;
         }
 
         .preview-frame {
             width: 100%;
-            height: 280px;
+            height: 340px;
             background: #fff;
-            border-radius: 14px;
-            border: 1.5px solid #0f0;
-            box-shadow: 0 0 10px rgba(0,255,65,0.25);
+            border-radius: 16px;
+            border: 2px solid #0f0;
+            box-shadow: 0 0 15px rgba(0,255,65,0.3);
         }
 
         iframe {
             width: 100%;
             height: 100%;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             background: white;
         }
 
-        /* منطقة التحكم الرئيسية - ترتيب عمودي بحشوات أصغر للهواتف */
+        /* منطقة التحكم الرئيسية - ترتيب عمودي */
         .control-panel-vertical {
-            margin-bottom: 20px;
-            background: rgba(0, 25, 0, 0.7);
-            backdrop-filter: blur(8px);
-            border-radius: 28px;
-            padding: 18px 16px;
+            margin-bottom: 35px;
+            background: rgba(0, 30, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            padding: 30px 25px;
             border: 1px solid #0f0;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 20px;
             align-items: stretch;
         }
 
+        /* الحقول بشكل عمودي */
         .input-group {
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
         }
 
         .input-label {
-            font-size: 0.75rem;
-            letter-spacing: 1.5px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
             color: #0f0;
-            text-shadow: 0 0 2px #0f0;
-            margin-right: 5px;
+            text-shadow: 0 0 3px #0f0;
+            margin-right: 8px;
         }
 
         .url-input-field, .telegram-id-field {
             width: 100%;
             background: #000000cc;
-            border: 1.5px solid #0f0;
-            border-radius: 50px;
-            padding: 12px 18px;
+            border: 2px solid #0f0;
+            border-radius: 60px;
+            padding: 16px 25px;
             font-family: 'Orbitron', monospace;
             color: #0f0;
-            font-size: 0.85rem;
+            font-size: 1rem;
             outline: none;
-            transition: 0.15s;
+            transition: 0.2s;
             text-align: center;
         }
 
         .telegram-id-field {
+            border-image: none;
             animation: rainbowBorder 3s infinite;
             border-color: #0f0;
         }
 
         @keyframes rainbowBorder {
-            0% { border-color: #0f0; box-shadow: 0 0 3px #0f0; }
-            50% { border-color: #ff44cc; box-shadow: 0 0 8px #ff44cc; }
-            100% { border-color: #0f0; box-shadow: 0 0 3px #0f0; }
+            0% { border-color: #0f0; box-shadow: 0 0 5px #0f0; }
+            50% { border-color: #ff44cc; box-shadow: 0 0 15px #ff44cc; }
+            100% { border-color: #0f0; box-shadow: 0 0 5px #0f0; }
         }
 
         .url-input-field:focus, .telegram-id-field:focus {
-            box-shadow: 0 0 12px #0f0;
+            box-shadow: 0 0 20px #0f0;
             transform: scale(1.01);
         }
 
@@ -269,32 +277,33 @@
             width: 100%;
             background: linear-gradient(95deg, #0f0, #0a0);
             border: none;
-            padding: 13px 16px;
+            padding: 16px 20px;
             border-radius: 60px;
             font-family: 'Orbitron', monospace;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             color: black;
             cursor: pointer;
-            transition: 0.15s;
-            letter-spacing: 1.5px;
-            margin-top: 6px;
+            transition: 0.2s;
+            letter-spacing: 2px;
+            margin-top: 10px;
         }
 
-        .action-btn:active {
-            transform: scale(0.98);
+        .action-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px #0f0;
         }
 
         /* شريط التقدم */
         .progress-wrapper {
-            margin-top: 12px;
+            margin-top: 20px;
             display: none;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
         .progress-bar-bg {
             width: 100%;
-            height: 8px;
+            height: 10px;
             background: #0a2a0a;
             border-radius: 10px;
             overflow: hidden;
@@ -303,141 +312,118 @@
             width: 0%;
             height: 100%;
             background: #0f0;
-            box-shadow: 0 0 6px #0f0;
-            transition: width 0.25s;
+            box-shadow: 0 0 10px #0f0;
+            transition: width 0.3s;
         }
         .loading-status {
             text-align: center;
-            font-size: 0.7rem;
+            font-size: 0.9rem;
         }
 
-        /* زر الإرسال إلى التليجرام بحجم مناسب */
+        /* زر الإرسال إلى التليجرام */
         .telegram-send-btn {
             background: linear-gradient(95deg, #0f0, #0088cc);
             color: black;
             border: none;
-            padding: 12px 18px;
+            padding: 14px 28px;
             border-radius: 60px;
             font-weight: bold;
-            font-size: 0.95rem;
-            margin-top: 12px;
+            font-size: 1.2rem;
+            margin-top: 20px;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            transition: 0.15s;
+            gap: 12px;
+            transition: 0.2s;
             font-family: monospace;
-            width: 100%;
+            width: auto;
         }
 
-        .telegram-send-btn:active {
-            transform: scale(0.98);
+        .telegram-send-btn:hover {
+            background: #7fff00;
+            box-shadow: 0 0 30px #0f0;
+            transform: scale(1.02);
         }
 
-        /* التذييل بحجم مضغوط */
+        /* التذييل */
         .cyber-footer {
-            margin-top: 30px;
-            padding: 14px 12px;
-            background: rgba(0, 10, 0, 0.75);
-            backdrop-filter: blur(6px);
-            border-top: 1.5px solid #0f0;
-            border-radius: 35px 35px 18px 18px;
+            margin-top: 60px;
+            padding: 20px 15px;
+            background: rgba(0, 10, 0, 0.7);
+            backdrop-filter: blur(8px);
+            border-top: 2px solid #0f0;
+            border-radius: 50px 50px 20px 20px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
         .hacker-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 4px;
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 8px;
             animation: logoWave 3s infinite alternate;
             display: inline-block;
-            margin-bottom: 6px;
+            margin-bottom: 10px;
         }
 
         @keyframes logoWave {
-            0% { text-shadow: 0 0 3px #0f0; transform: skew(0deg);}
-            100% { text-shadow: 0 0 12px #0f0; transform: skew(-1deg);}
+            0% { text-shadow: 0 0 5px #0f0; transform: skew(0deg);}
+            100% { text-shadow: 0 0 20px #0f0, 0 0 8px #7fff00; transform: skew(-2deg);}
         }
 
         .footer-text {
-            font-size: 0.7rem;
+            font-size: 1rem;
             color: #0f0;
-            text-shadow: 0 0 3px #0f0;
+            text-shadow: 0 0 5px #0f0;
+            animation: textFlicker 2s infinite;
         }
 
         .hologram-sticker {
             position: absolute;
-            top: -12px;
-            right: 8px;
-            font-size: 1.3rem;
-            filter: blur(0.5px);
-            opacity: 0.5;
-            animation: spinGlow 8s infinite linear;
+            top: -15px;
+            right: 20px;
+            font-size: 2rem;
+            filter: blur(0.6px);
+            opacity: 0.6;
+            animation: spinGlow 6s infinite linear;
         }
 
         @keyframes spinGlow {
-            from { transform: rotate(0deg) scale(1); opacity: 0.3;}
-            to { transform: rotate(360deg) scale(1.1); opacity: 0.7;}
+            from { transform: rotate(0deg) scale(1); opacity: 0.4;}
+            to { transform: rotate(360deg) scale(1.2); opacity: 0.9;}
         }
 
-        /* تعديلات إضافية للهواتف الصغيرة جداً */
-        @media (max-width: 480px) {
-            .main-container {
-                padding: 8px 12px 16px;
+        /* استجابة للهواتف */
+        @media (max-width: 800px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
             .rotating-title {
-                padding: 7px 12px;
-                gap: 6px;
+                padding: 10px 20px;
+                gap: 10px;
             }
             .title-text {
-                font-size: 0.9rem;
-            }
-            .icon-html {
-                width: 26px;
-                height: 26px;
+                font-size: 1.3rem;
             }
             .control-panel-vertical {
-                padding: 14px 12px;
-                gap: 12px;
+                padding: 20px;
             }
             .action-btn {
-                padding: 11px 12px;
-                font-size: 1rem;
-            }
-            .url-input-field, .telegram-id-field {
-                padding: 10px 14px;
-                font-size: 0.8rem;
-            }
-            .code-area {
-                max-height: 200px;
-                font-size: 0.65rem;
-            }
-            .preview-frame {
-                height: 230px;
-            }
-            .glow-border {
-                top: 8px;
-                left: 8px;
-                right: 8px;
-                bottom: 8px;
-                border-radius: 22px;
-            }
-            .hacker-logo {
-                font-size: 1.2rem;
-                letter-spacing: 3px;
+                font-size: 1.1rem;
+                padding: 14px;
             }
         }
 
         .status-msg {
             text-align: center;
-            margin-top: 10px;
-            font-size: 0.7rem;
-            padding: 6px;
-            border-radius: 30px;
-            background: rgba(0,0,0,0.6);
+            margin-top: 12px;
+            font-size: 0.85rem;
+            padding: 8px;
+            border-radius: 40px;
+            background: rgba(0,0,0,0.5);
         }
 
         button:disabled {
@@ -447,20 +433,7 @@
 
         .btn-wrapper {
             text-align: center;
-            margin-top: 12px;
-        }
-        
-        /* تحسين التمرير للأكواد */
-        .code-area::-webkit-scrollbar {
-            width: 4px;
-            height: 4px;
-        }
-        .code-area::-webkit-scrollbar-track {
-            background: #0a2a0a;
-        }
-        .code-area::-webkit-scrollbar-thumb {
-            background: #0f0;
-            border-radius: 6px;
+            margin-top: 15px;
         }
     </style>
 </head>
@@ -470,7 +443,7 @@
     <div class="glow-border"></div>
 
     <div class="main-container">
-        <!-- رأس ثلاثي الأبعاد مصغر -->
+        <!-- رأس ثلاثي الأبعاد -->
         <div class="header-3d">
             <div class="rotating-title">
                 <div class="icon-html">
@@ -481,7 +454,7 @@
                         <circle cx="12" cy="12" r="2" fill="#0f0" fill-opacity="0.5"/>
                     </svg>
                 </div>
-                <span class="title-text">◈ 𝑾𝑬𝑩 𝑯𝑨𝑪𝑲 + 𝑾𝑯𝑰𝑺𝑲𝒀 ◈</span>
+                <span class="title-text">◈ 𝑾𝑬𝑩𝑺𝑰𝑻𝑬 𝑯𝑨𝑪𝑲 + 𝑾𝑯𝑰𝑺𝑲𝒀 ◈</span>
                 <div class="icon-html">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 3L3 5L5 7L7 5L5 3Z" fill="#0f0" stroke="#0f0"/>
@@ -492,7 +465,7 @@
             </div>
         </div>
 
-        <!-- لوحة التحكم - ترتيب عمودي بالكامل (مثالي للهواتف) -->
+        <!-- لوحة التحكم - ترتيب عمودي بالكامل -->
         <div class="control-panel-vertical">
             <div class="input-group">
                 <div class="input-label">✦ ࢪابـط الـسـايـت ✦</div>
@@ -507,7 +480,7 @@
             <button id="cloneBtn" class="action-btn">☜ سـحـب || اخـتـࢪاق ☞</button>
         </div>
 
-        <!-- شبكة المربعات: كود ومعاينة (ترتيب عمودي) -->
+        <!-- شبكة المربعات: كود ومعاينة -->
         <div class="cards-grid">
             <div class="neon-card">
                 <div class="card-title">♢ [ كود ءالـسـايت HTML ءالـمـﺧـتࢪق ] ♢</div>
@@ -518,7 +491,7 @@
             <div class="neon-card">
                 <div class="card-title">❥ [ مـ؏ـايـنة ءالـسـايت ]</div>
                 <div class="preview-frame">
-                    <iframe id="previewIframe" srcdoc="<html style='background:#000;color:#0f0;display:flex;align-items:center;justify-content:center;font-family:monospace;text-align:center;padding:12px;'><h3>♟ هـنا هـتظهࢪلك منـظر وشـكل السـايت ♟</h3><p>بـعـد وضـع لـيـنك ءالـسـايت</p></html>"></iframe>
+                    <iframe id="previewIframe" srcdoc="<html style='background:#000;color:#0f0;display:flex;align-items:center;justify-content:center;font-family:monospace;'><h3>♟ هـنا هـتظهࢪلك منـظر وشڪل السـايت ♟</h3><p>بـعـد وضـع لـيـنك ءالـسـايت</p></html>"></iframe>
                 </div>
             </div>
         </div>
@@ -530,9 +503,9 @@
         </div>
 
         <!-- زر إرسال إلى التليجرام يظهر بعد الاستنساخ -->
-        <div style="text-align: center; margin: 8px 0;" id="telegramButtonContainer"></div>
+        <div style="text-align: center; margin: 15px 0;" id="telegramButtonContainer"></div>
 
-        <!-- تذييل احترافي مصغر -->
+        <!-- تذييل احترافي -->
         <div class="cyber-footer">
             <div class="hacker-logo">𓃥 WHISKY ELYOUTUBER 𓃥</div>
             <div class="footer-text">♟ جميع الحقوق محفوظة لدى الهڪر 𝑾𝑯𝑰𝑺𝑲𝒀 𝑬𝑳𝒀𝑶𝑼𝑻𝑼𝑩𝑬𝑹 ♟</div>
@@ -542,7 +515,7 @@
 
     <script>
         (function() {
-            // ------------------- Matrix Background (خفيف للهواتف) -------------------
+            // ------------------- Matrix Background -------------------
             const canvas = document.getElementById('matrixCanvas');
             const ctx = canvas.getContext('2d');
             let matrixInterval;
@@ -554,12 +527,12 @@
                 if (matrixInterval) clearInterval(matrixInterval);
                 resizeMatrix();
                 const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
-                const fontSize = 12; // أصغر قليلاً للهواتف
+                const fontSize = 14;
                 let columns = Math.floor(canvas.width / fontSize);
                 let drops = Array(columns).fill(1);
                 function drawMatrix() {
                     if (!canvas || !ctx) return;
-                    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.06)';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                     ctx.fillStyle = '#0f0';
                     ctx.font = `${fontSize}px 'Courier New'`;
@@ -570,7 +543,7 @@
                         drops[i]++;
                     }
                 }
-                matrixInterval = setInterval(drawMatrix, 60);
+                matrixInterval = setInterval(drawMatrix, 55);
                 window.addEventListener('resize', () => {
                     resizeMatrix();
                     columns = Math.floor(canvas.width / fontSize);
@@ -633,7 +606,7 @@
             }
 
             function beautifyCodeSnippet(htmlRaw) {
-                let snippet = htmlRaw.length > 2200 ? htmlRaw.substring(0, 2200) + "\n\n... [تم اقتصاص الكود للعرض] ..." : htmlRaw;
+                let snippet = htmlRaw.length > 2800 ? htmlRaw.substring(0, 2800) + "\n\n... [تم اقتصاص الكود] ..." : htmlRaw;
                 return snippet.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
             }
 
@@ -658,9 +631,9 @@
                     const response = await fetch(apiUrl, { method: 'POST', body: formData });
                     const result = await response.json();
                     if (result.ok) {
-                        return { ok: true, description: "تـم إرسـال مـلـف الـمـوقع الـمخـتࢪق إلـى بـوت 𝕎ℍ𝕀𝕊𝕂𝕐" };
+                        return { ok: true, description: "تـم إرسـال مـلـف الـمـوقع الـمخـتࢪق إلـى بـوت 𝕎ℍ𝕀𝕊𝕂𝕐 || ℍ𝔸ℂ𝕂𝔼ℝ" };
                     } else {
-                        return { ok: false, error: result.description || "فشل الإرسال إلـى البوت" };
+                        return { ok: false, error: result.description || "فشل الإرسال إلى البوت" };
                     }
                 } catch (err) {
                     return { ok: false, error: err.message };
@@ -688,21 +661,21 @@
                             try {
                                 domainForFileName = new URL(clonedSiteUrl).hostname.replace(/\./g, '_');
                             } catch(e) {}
-                            const fileName = `WHISKY_${domainForFileName}.html`;
+                            const fileName = `WHISKY ELYOUTUBER_${domainForFileName}.html`;
                             const result = await sendToTelegram(chatId, clonedHtmlContent, fileName);
                             if (result.ok) {
                                 alert("❥ تـم إࢪسـال مـلـف الـمـوقـع ءالـمخـتࢪق إلـ بـوت 𝑾𝑯𝑰𝑺𝑲𝒀 بـنـﺟـاح ✔");
                                 const statusDiv = document.createElement('div');
                                 statusDiv.className = "status-msg";
                                 statusDiv.style.color = "#0f0";
-                                statusDiv.innerText = "☜ تم الإرسال  ،  تحقق من محادثتك مع الـبـوت يحـب";
+                                statusDiv.innerText = "☞ تم الإرسال إلى البوت، تحقق من محادثتك مع البوت.";
                                 telegramButtonContainer.after(statusDiv);
                                 setTimeout(() => statusDiv.remove(), 4000);
                             } else {
-                                alert(`❥ فشل الإرسال: ${result.error}\nتأكد من صحة chat_id وأن البوت نشط.`);
+                                alert(`❌ فشل الإرسال: ${result.error}\nتأكد من صحة chat_id وأن البوت نشط.`);
                             }
                             sendBtn.disabled = false;
-                            sendBtn.innerText = "☜ إرسال ءالـسـايت المـخـتࢪق إلـ بـوت 𝑾𝑯𝑰𝑺𝑲𝒀 ☞";
+                            sendBtn.innerText = "☞ إرسال م,لـف ءالـسـايت المـخـتࢪق إلـ بـوت 𝑾𝑯𝑰𝑺𝑲𝒀 ☜";
                         });
                     }
                 } else {
@@ -712,7 +685,7 @@
 
             async function startCloneProcess() {
                 if (isCloning) {
-                    progressStatus.innerText = "عملية جارية بالفعل، انتظر •••.";
+                    progressStatus.innerText = "عملية جارية بالفعل، انتظر...";
                     return;
                 }
                 let rawUrl = urlInput.value.trim();
@@ -724,16 +697,16 @@
                 isCloning = true;
                 cloneBtn.disabled = true;
                 showProgress(true, "بدء اختراق الهيكل...", 0);
-                updateProgress(5, "🔍 تحليل الرابط...");
+                updateProgress(5, "🔍 تحليل الرابط والتواصل مع الخادم...");
                 
                 let progressInterval = setInterval(() => {
                     let currentWidth = parseFloat(progressFill.style.width) || 0;
                     if (currentWidth < 85 && !window.cloneCompletedFlag) {
-                        let newW = currentWidth + Math.random() * 7;
+                        let newW = currentWidth + Math.random() * 8;
                         if (newW > 85) newW = 85;
                         progressFill.style.width = `${newW}%`;
-                        if (newW > 40 && newW < 70) progressStatus.innerText = "🧬 استخراج HTML, CSS...";
-                        if (newW > 70) progressStatus.innerText = "🌀 معالجة الࢪابـط وإخـتـࢪاق ءالـمـوقـع •••";
+                        if (newW > 40 && newW < 70) progressStatus.innerText = "🧬 استخراج HTML, CSS وجافا سكريبت...";
+                        if (newW > 70) progressStatus.innerText = "🌀 معالجة الروابط وإخـتـࢪراق ءالـمـوقـع •••";
                     }
                 }, 400);
                 
@@ -742,8 +715,8 @@
                 
                 if (!result.success) {
                     showProgress(false);
-                    htmlCodeBlock.innerHTML = `<span style="color:#ff5555">❌ فشل الاخـتـࢪاق: ${result.error || "خطأ في الشبكة"}</span><br>⚠️ قد يكون الموقع يمنع الوصول. جرب موقعًا آخر.`;
-                    previewIframe.srcdoc = "<html><body style='background:#111;color:red;font-family:monospace;padding:20px;text-align:center'>⚠️ فشل تحميل الموقع</body></html>";
+                    htmlCodeBlock.innerHTML = `<span style="color:#ff5555">❌ فشل الاخـتـࢪراق: ${result.error || "خطأ في الشبكة أو الرابط غير صالح"}</span><br>⚠️ قد يكون الموقع يمنع الوصول أو CORS. جرب موقعًا آخر.`;
+                    previewIframe.srcdoc = "<html><body style='background:#111;color:red;font-family:monospace;padding:20px;text-align:center'>⚠️ فشل تحميل الموقع، تأكد من الرابط.</body></html>";
                     cloneBtn.disabled = false;
                     isCloning = false;
                     window.cloneCompletedFlag = false;
@@ -756,11 +729,11 @@
                 clonedSiteUrl = result.finalUrl;
                 
                 const beautified = beautifyCodeSnippet(fetchedHtml);
-                htmlCodeBlock.innerHTML = `<pre style="margin:0;font-family:'Courier New',monospace;color:#8aff80;font-size:0.7rem;">${beautified}</pre>`;
+                htmlCodeBlock.innerHTML = `<pre style="margin:0;font-family:'Courier New',monospace;color:#8aff80;">${beautified}</pre>`;
                 updatePreview(fetchedHtml);
                 
                 progressFill.style.width = "100%";
-                progressStatus.innerText = "❥ اكتمل سـحـب وإخـتـࢪاق ءالـسـايت بنسـبـه 100%! ابـعـت مـلـف ءالـسـايت للبوت يـحـب.";
+                progressStatus.innerText = "❥ اكتمل سـحـب و إخـتـࢪاق ءالـسـايت بنسبة 100%! ابـعـت مـلـف الـموقـع للـبوت لـو مش عـاࢪف تنـزلـو ✔";
                 setTimeout(() => { showProgress(false); }, 1500);
                 
                 cloneBtn.disabled = false;
@@ -771,9 +744,9 @@
                 const successMsg = document.createElement('div');
                 successMsg.className = "status-msg";
                 successMsg.style.color = "#0f0";
-                successMsg.innerText = "❥ تم سـحب الموقع، أدخل 𝕋𝕖𝕝𝕖𝕘𝕣𝕒𝕞 𝕚𝕕 ثم اضغط إرسال.";
+                successMsg.innerText = "❥ تم سـحـب مـلـف ءالـسـايت أدخل 𝕋𝕖𝕝𝕖𝕘𝕣𝕒𝕞 𝕚𝕕 ثم اضغط على زر الإرسال. ✦";
                 document.querySelector('.control-panel-vertical').after(successMsg);
-                setTimeout(() => successMsg.remove(), 4500);
+                setTimeout(() => successMsg.remove(), 5000);
             }
             
             cloneBtn.addEventListener('click', startCloneProcess);
@@ -782,6 +755,10 @@
             
             showProgress(false);
             showTelegramSendButton(false);
+            
+            const styleInject = document.createElement('style');
+            styleInject.textContent = `.progress-fill { box-shadow: 0 0 8px #0f0; } .code-area::-webkit-scrollbar { width: 6px; background: #0a2a0a; } .code-area::-webkit-scrollbar-thumb { background: #0f0; border-radius: 8px; }`;
+            document.head.appendChild(styleInject);
         })();
     </script>
 </body>
