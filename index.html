@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>اخـتـࢪاق | سـحـب مـواقـع | HTML</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at center, #001a00 0%, #000000 100%);
+            color: #0f0;
+            font-family: 'Orbitron', monospace;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* خلفية الماتريكس المتطورة */
+        .matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        /* خطوط مسح الهولوغرام ثلاثية الأبعاد */
+        .hologram-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0,255,65,0.02) 0px, rgba(0,255,65,0.02) 2px, transparent 2px, transparent 6px);
+            pointer-events: none;
+            z-index: 1;
+            animation: scanVertical 8s linear infinite;
+        }
+
+        @keyframes scanVertical {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+
+        /* حواف متوهجة دائرية */
+        .glow-border {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid rgba(0, 255, 65, 0.3);
+            border-radius: 40px;
+            pointer-events: none;
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(0,255,65,0.2), inset 0 0 20px rgba(0,255,65,0.1);
+            animation: borderPulse 3s infinite alternate;
+        }
+
+        @keyframes borderPulse {
+            0% { border-color: rgba(0, 255, 65, 0.2); box-shadow: 0 0 10px rgba(0,255,65,0.2);}
+            100% { border-color: rgba(0, 255, 65, 0.7); box-shadow: 0 0 40px rgba(0,255,65,0.5);}
+        }
+
+        .main-container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-bottom: 30px;
+        }
+
+        /* رأس الصفحة مع عنوان 3D دوار */
+        .header-3d {
+            text-align: center;
+            margin: 30px 0 40px;
+            perspective: 800px;
+        }
+
+        .rotating-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 18px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            padding: 15px 35px;
+            border-radius: 80px;
+            border: 1px solid #0f0;
+            box-shadow: 0 0 30px rgba(0,255,65,0.4);
+            animation: rotate3dTitle 6s infinite ease-in-out, titleGlow 2s infinite alternate;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes rotate3dTitle {
+            0% { transform: rotateY(0deg) rotateX(0deg); }
+            25% { transform: rotateY(10deg) rotateX(5deg); }
+            75% { transform: rotateY(-10deg) rotateX(-5deg); }
+            100% { transform: rotateY(0deg) rotateX(0deg); }
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 5px #0f0, 0 0 10px #0f0; box-shadow: 0 0 10px #0f0; }
+            100% { text-shadow: 0 0 20px #0f0, 0 0 30px #0f0; box-shadow: 0 0 40px #0f0; }
+        }
+
+        .icon-html {
+            width: 48px;
+            height: 48px;
+            filter: drop-shadow(0 0 8px #0f0);
+            animation: iconPulse 2s infinite;
+        }
+
+        .title-text {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #0f0, #7fff00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        @keyframes iconPulse {
+            0% { filter: drop-shadow(0 0 3px #0f0); transform: scale(1);}
+            100% { filter: drop-shadow(0 0 15px #0f0); transform: scale(1.05);}
+        }
+
+        /* شبكة المربعات المرتبة */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 30px 0 40px;
+        }
+
+        .neon-card {
+            background: rgba(0, 20, 0, 0.55);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid #0f0;
+            border-radius: 28px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0,255,65,0.2), inset 0 0 15px rgba(0,255,65,0.05);
+            transition: all 0.3s ease;
+            animation: cardGlow 3s infinite alternate;
+        }
+
+        .neon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 35px rgba(0,255,65,0.5);
+            border-color: #7fff00;
+        }
+
+        @keyframes cardGlow {
+            0% { box-shadow: 0 0 5px rgba(0,255,65,0.2);}
+            100% { box-shadow: 0 0 25px rgba(0,255,65,0.5);}
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #0f0;
+            display: inline-block;
+            width: 100%;
+            padding-bottom: 8px;
+        }
+
+        .code-area {
+            background: #000000aa;
+            border-radius: 18px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #0f0;
+            direction: ltr;
+            text-align: left;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-height: 320px;
+            overflow-y: auto;
+            border: 1px solid #0f0;
+        }
+
+        .preview-frame {
+            width: 100%;
+            height: 340px;
+            background: #fff;
+            border-radius: 16px;
+            border: 2px solid #0f0;
+            box-shadow: 0 0 15px rgba(0,255,65,0.3);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 14px;
+            background: white;
+        }
+
+        /* منطقة التحكم الرئيسية - ترتيب عمودي */
+        .control-panel-vertical {
+            margin-bottom: 35px;
+            background: rgba(0, 30, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            padding: 30px 25px;
+            border: 1px solid #0f0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        /* الحقول بشكل عمودي */
+        .input-group {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-label {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            color: #0f0;
+            text-shadow: 0 0 3px #0f0;
+            margin-right: 8px;
+        }
+
+        .url-input-field, .telegram-id-field {
+            width: 100%;
+            background: #000000cc;
+            border: 2px solid #0f0;
+            border-radius: 60px;
+            padding: 16px 25px;
+            font-family: 'Orbitron', monospace;
+            color: #0f0;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.2s;
+            text-align: center;
+        }
+
+        .telegram-id-field {
+            border-image: none;
+            animation: rainbowBorder 3s infinite;
+            border-color: #0f0;
+        }
+
+        @keyframes rainbowBorder {
+            0% { border-color: #0f0; box-shadow: 0 0 5px #0f0; }
+            50% { border-color: #ff44cc; box-shadow: 0 0 15px #ff44cc; }
+            100% { border-color: #0f0; box-shadow: 0 0 5px #0f0; }
+        }
+
+        .url-input-field:focus, .telegram-id-field:focus {
+            box-shadow: 0 0 20px #0f0;
+            transform: scale(1.01);
+        }
+
+        .action-btn {
+            width: 100%;
+            background: linear-gradient(95deg, #0f0, #0a0);
+            border: none;
+            padding: 16px 20px;
+            border-radius: 60px;
+            font-family: 'Orbitron', monospace;
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: black;
+            cursor: pointer;
+            transition: 0.2s;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px #0f0;
+        }
+
+        /* شريط التقدم */
+        .progress-wrapper {
+            margin-top: 20px;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .progress-bar-bg {
+            width: 100%;
+            height: 10px;
+            background: #0a2a0a;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: #0f0;
+            box-shadow: 0 0 10px #0f0;
+            transition: width 0.3s;
+        }
+        .loading-status {
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* زر الإرسال إلى التليجرام */
+        .telegram-send-btn {
+            background: linear-gradient(95deg, #0f0, #0088cc);
+            color: black;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: 0.2s;
+            font-family: monospace;
+            width: auto;
+        }
+
+        .telegram-send-btn:hover {
+            background: #7fff00;
+            box-shadow: 0 0 30px #0f0;
+            transform: scale(1.02);
+        }
+
+        /* التذييل */
+        .cyber-footer {
+            margin-top: 60px;
+            padding: 20px 15px;
+            background: rgba(0, 10, 0, 0.7);
+            backdrop-filter: blur(8px);
+            border-top: 2px solid #0f0;
+            border-radius: 50px 50px 20px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hacker-logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 8px;
+            animation: logoWave 3s infinite alternate;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        @keyframes logoWave {
+            0% { text-shadow: 0 0 5px #0f0; transform: skew(0deg);}
+            100% { text-shadow: 0 0 20px #0f0, 0 0 8px #7fff00; transform: skew(-2deg);}
+        }
+
+        .footer-text {
+            font-size: 1rem;
+            color: #0f0;
+            text-shadow: 0 0 5px #0f0;
+            animation: textFlicker 2s infinite;
+        }
+
+        .hologram-sticker {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            font-size: 2rem;
+            filter: blur(0.6px);
+            opacity: 0.6;
+            animation: spinGlow 6s infinite linear;
+        }
+
+        @keyframes spinGlow {
+            from { transform: rotate(0deg) scale(1); opacity: 0.4;}
+            to { transform: rotate(360deg) scale(1.2); opacity: 0.9;}
+        }
+
+        /* استجابة للهواتف */
+        @media (max-width: 800px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .rotating-title {
+                padding: 10px 20px;
+                gap: 10px;
+            }
+            .title-text {
+                font-size: 1.3rem;
+            }
+            .control-panel-vertical {
+                padding: 20px;
+            }
+            .action-btn {
+                font-size: 1.1rem;
+                padding: 14px;
+            }
+        }
+
+        .status-msg {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            padding: 8px;
+            border-radius: 40px;
+            background: rgba(0,0,0,0.5);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-wrapper {
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <canvas class="matrix-canvas" id="matrixCanvas"></canvas>
+    <div class="hologram-overlay"></div>
+    <div class="glow-border"></div>
+
+    <div class="main-container">
+        <!-- رأس ثلاثي الأبعاد -->
+        <div class="header-3d">
+            <div class="rotating-title">
+                <div class="icon-html">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#0f0" stroke-width="1.2" fill="none"/>
+                        <path d="M2 17L12 22L22 17" stroke="#0f0" stroke-width="1.2" fill="none"/>
+                        <path d="M2 12L12 17L22 12" stroke="#0f0" stroke-width="1.2" fill="none"/>
+                        <circle cx="12" cy="12" r="2" fill="#0f0" fill-opacity="0.5"/>
+                    </svg>
+                </div>
+                <span class="title-text">◈ 𝑾𝑬𝑩𝑺𝑰𝑻𝑬 𝑯𝑨𝑪𝑲 + 𝑾𝑯𝑰𝑺𝑲𝒀 ◈</span>
+                <div class="icon-html">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 3L3 5L5 7L7 5L5 3Z" fill="#0f0" stroke="#0f0"/>
+                        <path d="M19 3L21 5L19 7L17 5L19 3Z" fill="#0f0" stroke="#0f0"/>
+                        <rect x="8" y="8" width="8" height="8" fill="none" stroke="#0f0" stroke-width="1"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- لوحة التحكم - ترتيب عمودي بالكامل -->
+        <div class="control-panel-vertical">
+            <div class="input-group">
+                <div class="input-label">✦ ࢪابـط الـسـايـت ✦</div>
+                <input type="url" id="targetUrl" class="url-input-field" placeholder="https://example.com" value="https://example.com">
+            </div>
+            
+            <div class="input-group">
+                <div class="input-label">✧ حـط الـ 𝒊𝒅 بـتاعك يحـب ✧</div>
+                <input type="text" id="telegramUserId" class="telegram-id-field" placeholder="أدخل معرفك الشخصي - مثال: 123456789" value="">
+            </div>
+            
+            <button id="cloneBtn" class="action-btn">☜ سـحـب || اخـتـࢪاق ☞</button>
+        </div>
+
+        <!-- شبكة المربعات: كود ومعاينة -->
+        <div class="cards-grid">
+            <div class="neon-card">
+                <div class="card-title">♢ [ كود ءالـسـايت HTML ءالـمـﺧـتࢪق ] ♢</div>
+                <div class="code-area" id="htmlCodeBlock">
+                    <span style="color:#7fff00">// انـتـظر عـمـليه ءالـسـحب •••</span><br>
+                </div>
+            </div>
+            <div class="neon-card">
+                <div class="card-title">❥ [ مـ؏ـايـنة ءالـسـايت ]</div>
+                <div class="preview-frame">
+                    <iframe id="previewIframe" srcdoc="<html style='background:#000;color:#0f0;display:flex;align-items:center;justify-content:center;font-family:monospace;'><h3>♟ هـنا هـتظهࢪلك منـظر وشڪل السـايت ♟</h3><p>بـعـد وضـع لـيـنك ءالـسـايت</p></html>"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- شريط التقدم -->
+        <div id="progressArea" class="progress-wrapper">
+            <div class="progress-bar-bg"><div id="progressFill" class="progress-fill"></div></div>
+            <div id="progressStatus" class="loading-status">❥ جـاهـز للإخـتـࢪاق...</div>
+        </div>
+
+        <!-- زر إرسال إلى التليجرام يظهر بعد الاستنساخ -->
+        <div style="text-align: center; margin: 15px 0;" id="telegramButtonContainer"></div>
+
+        <!-- تذييل احترافي -->
+        <div class="cyber-footer">
+            <div class="hacker-logo">𓃥 WHISKY ELYOUTUBER 𓃥</div>
+            <div class="footer-text">♟ جميع الحقوق محفوظة لدى الهڪر 𝑾𝑯𝑰𝑺𝑲𝒀 𝑬𝑳𝒀𝑶𝑼𝑻𝑼𝑩𝑬𝑹 ♟</div>
+            <div class="hologram-sticker">⏣ [𝕎𝔼𝔹 ℍ𝔸ℂ𝕂] ⏣</div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ------------------- Matrix Background -------------------
+            const canvas = document.getElementById('matrixCanvas');
+            const ctx = canvas.getContext('2d');
+            let matrixInterval;
+            function resizeMatrix() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            function startMatrix() {
+                if (matrixInterval) clearInterval(matrixInterval);
+                resizeMatrix();
+                const chars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
+                const fontSize = 14;
+                let columns = Math.floor(canvas.width / fontSize);
+                let drops = Array(columns).fill(1);
+                function drawMatrix() {
+                    if (!canvas || !ctx) return;
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.06)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = '#0f0';
+                    ctx.font = `${fontSize}px 'Courier New'`;
+                    for (let i = 0; i < drops.length; i++) {
+                        const text = chars[Math.floor(Math.random() * chars.length)];
+                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                        drops[i]++;
+                    }
+                }
+                matrixInterval = setInterval(drawMatrix, 55);
+                window.addEventListener('resize', () => {
+                    resizeMatrix();
+                    columns = Math.floor(canvas.width / fontSize);
+                    drops = Array(columns).fill(1);
+                });
+            }
+            startMatrix();
+
+            // ------------------- DOM Elements -------------------
+            const urlInput = document.getElementById('targetUrl');
+            const telegramIdInput = document.getElementById('telegramUserId');
+            const cloneBtn = document.getElementById('cloneBtn');
+            const htmlCodeBlock = document.getElementById('htmlCodeBlock');
+            const previewIframe = document.getElementById('previewIframe');
+            const progressArea = document.getElementById('progressArea');
+            const progressFill = document.getElementById('progressFill');
+            const progressStatus = document.getElementById('progressStatus');
+            const telegramButtonContainer = document.getElementById('telegramButtonContainer');
+
+            const BOT_TOKEN = "8493347589:AAHasi6GzARbAGL-Ic7ggWgsDUhw4diwe1s";
+            
+            let clonedHtmlContent = "";
+            let clonedSiteUrl = "";
+            let isCloning = false;
+            let cloneCompletedFlag = false;
+
+            function showProgress(show, text = "", percent = 0) {
+                if (show) {
+                    progressArea.style.display = "flex";
+                    if (text) progressStatus.innerText = text;
+                    progressFill.style.width = `${percent}%`;
+                } else {
+                    progressArea.style.display = "none";
+                }
+            }
+
+            function updateProgress(percent, statusMsg) {
+                progressFill.style.width = `${Math.min(percent, 100)}%`;
+                progressStatus.innerText = statusMsg;
+            }
+
+            async function fetchWebsiteHtml(url) {
+                let finalUrl = url;
+                if (!finalUrl.startsWith('http://') && !finalUrl.startsWith('https://')) {
+                    finalUrl = 'https://' + finalUrl;
+                }
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(finalUrl)}`;
+                try {
+                    const response = await fetch(proxyUrl);
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    const data = await response.json();
+                    if (data && data.contents) {
+                        return { success: true, html: data.contents, finalUrl };
+                    } else {
+                        throw new Error("لم يتم العثور على محتوى");
+                    }
+                } catch (err) {
+                    return { success: false, error: err.message };
+                }
+            }
+
+            function beautifyCodeSnippet(htmlRaw) {
+                let snippet = htmlRaw.length > 2800 ? htmlRaw.substring(0, 2800) + "\n\n... [تم اقتصاص الكود] ..." : htmlRaw;
+                return snippet.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            }
+
+            function updatePreview(htmlContent) {
+                const iframeDoc = previewIframe.contentDocument || previewIframe.contentWindow.document;
+                iframeDoc.open();
+                iframeDoc.write(htmlContent);
+                iframeDoc.close();
+            }
+
+            async function sendToTelegram(chatId, fileContent, fileName) {
+                if (!chatId || chatId.trim() === "") {
+                    return { ok: false, error: "معرف التليجرام (chat_id) مطلوب" };
+                }
+                const blob = new Blob([fileContent], { type: 'text/html' });
+                const formData = new FormData();
+                formData.append('chat_id', chatId.trim());
+                formData.append('document', blob, fileName);
+                
+                const apiUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`;
+                try {
+                    const response = await fetch(apiUrl, { method: 'POST', body: formData });
+                    const result = await response.json();
+                    if (result.ok) {
+                        return { ok: true, description: "تـم إرسـال مـلـف الـمـوقع الـمخـتࢪق إلـى بـوت 𝕎ℍ𝕀𝕊𝕂𝕐 || ℍ𝔸ℂ𝕂𝔼ℝ" };
+                    } else {
+                        return { ok: false, error: result.description || "فشل الإرسال إلى البوت" };
+                    }
+                } catch (err) {
+                    return { ok: false, error: err.message };
+                }
+            }
+
+            function showTelegramSendButton(visible) {
+                if (visible && clonedHtmlContent) {
+                    telegramButtonContainer.innerHTML = `
+                        <button id="telegramSendFinalBtn" class="telegram-send-btn">
+                            ♝ إرسال ملف ءالـسـايت إلـ ءالـبـوت ♝
+                        </button>
+                    `;
+                    const sendBtn = document.getElementById('telegramSendFinalBtn');
+                    if (sendBtn) {
+                        sendBtn.addEventListener('click', async () => {
+                            let chatId = telegramIdInput.value.trim();
+                            if (!chatId) {
+                                alert("✘ حـط الـ 𝕚𝕕 بـتاعك الاول يحـب (chat_id) في حـقـل الـ 𝕚𝕕");
+                                return;
+                            }
+                            sendBtn.disabled = true;
+                            sendBtn.innerText = "❥ جاري الإرࢪسـال •••";
+                            let domainForFileName = "cloned_site";
+                            try {
+                                domainForFileName = new URL(clonedSiteUrl).hostname.replace(/\./g, '_');
+                            } catch(e) {}
+                            const fileName = `WHISKY ELYOUTUBER_${domainForFileName}.html`;
+                            const result = await sendToTelegram(chatId, clonedHtmlContent, fileName);
+                            if (result.ok) {
+                                alert("❥ تـم إࢪسـال مـلـف الـمـوقـع ءالـمخـتࢪق إلـ بـوت 𝑾𝑯𝑰𝑺𝑲𝒀 بـنـﺟـاح ✔");
+                                const statusDiv = document.createElement('div');
+                                statusDiv.className = "status-msg";
+                                statusDiv.style.color = "#0f0";
+                                statusDiv.innerText = "☞ تم الإرسال إلى البوت، تحقق من محادثتك مع البوت.";
+                                telegramButtonContainer.after(statusDiv);
+                                setTimeout(() => statusDiv.remove(), 4000);
+                            } else {
+                                alert(`❌ فشل الإرسال: ${result.error}\nتأكد من صحة chat_id وأن البوت نشط.`);
+                            }
+                            sendBtn.disabled = false;
+                            sendBtn.innerText = "☞ إرسال م,لـف ءالـسـايت المـخـتࢪق إلـ بـوت 𝑾𝑯𝑰𝑺𝑲𝒀 ☜";
+                        });
+                    }
+                } else {
+                    telegramButtonContainer.innerHTML = "";
+                }
+            }
+
+            async function startCloneProcess() {
+                if (isCloning) {
+                    progressStatus.innerText = "عملية جارية بالفعل، انتظر...";
+                    return;
+                }
+                let rawUrl = urlInput.value.trim();
+                if (!rawUrl) {
+                    alert("❥ حـط لـينك السـايت يـحب");
+                    return;
+                }
+                
+                isCloning = true;
+                cloneBtn.disabled = true;
+                showProgress(true, "بدء اختراق الهيكل...", 0);
+                updateProgress(5, "🔍 تحليل الرابط والتواصل مع الخادم...");
+                
+                let progressInterval = setInterval(() => {
+                    let currentWidth = parseFloat(progressFill.style.width) || 0;
+                    if (currentWidth < 85 && !window.cloneCompletedFlag) {
+                        let newW = currentWidth + Math.random() * 8;
+                        if (newW > 85) newW = 85;
+                        progressFill.style.width = `${newW}%`;
+                        if (newW > 40 && newW < 70) progressStatus.innerText = "🧬 استخراج HTML, CSS وجافا سكريبت...";
+                        if (newW > 70) progressStatus.innerText = "🌀 معالجة الروابط وإخـتـࢪراق ءالـمـوقـع •••";
+                    }
+                }, 400);
+                
+                const result = await fetchWebsiteHtml(rawUrl);
+                clearInterval(progressInterval);
+                
+                if (!result.success) {
+                    showProgress(false);
+                    htmlCodeBlock.innerHTML = `<span style="color:#ff5555">❌ فشل الاخـتـࢪراق: ${result.error || "خطأ في الشبكة أو الرابط غير صالح"}</span><br>⚠️ قد يكون الموقع يمنع الوصول أو CORS. جرب موقعًا آخر.`;
+                    previewIframe.srcdoc = "<html><body style='background:#111;color:red;font-family:monospace;padding:20px;text-align:center'>⚠️ فشل تحميل الموقع، تأكد من الرابط.</body></html>";
+                    cloneBtn.disabled = false;
+                    isCloning = false;
+                    window.cloneCompletedFlag = false;
+                    showTelegramSendButton(false);
+                    return;
+                }
+                
+                const fetchedHtml = result.html;
+                clonedHtmlContent = fetchedHtml;
+                clonedSiteUrl = result.finalUrl;
+                
+                const beautified = beautifyCodeSnippet(fetchedHtml);
+                htmlCodeBlock.innerHTML = `<pre style="margin:0;font-family:'Courier New',monospace;color:#8aff80;">${beautified}</pre>`;
+                updatePreview(fetchedHtml);
+                
+                progressFill.style.width = "100%";
+                progressStatus.innerText = "❥ اكتمل سـحـب و إخـتـࢪاق ءالـسـايت بنسبة 100%! ابـعـت مـلـف الـموقـع للـبوت لـو مش عـاࢪف تنـزلـو ✔";
+                setTimeout(() => { showProgress(false); }, 1500);
+                
+                cloneBtn.disabled = false;
+                isCloning = false;
+                window.cloneCompletedFlag = true;
+                showTelegramSendButton(true);
+                
+                const successMsg = document.createElement('div');
+                successMsg.className = "status-msg";
+                successMsg.style.color = "#0f0";
+                successMsg.innerText = "❥ تم سـحـب مـلـف ءالـسـايت أدخل 𝕋𝕖𝕝𝕖𝕘𝕣𝕒𝕞 𝕚𝕕 ثم اضغط على زر الإرسال. ✦";
+                document.querySelector('.control-panel-vertical').after(successMsg);
+                setTimeout(() => successMsg.remove(), 5000);
+            }
+            
+            cloneBtn.addEventListener('click', startCloneProcess);
+            urlInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') startCloneProcess(); });
+            telegramIdInput.addEventListener('keypress', (e) => { if (e.key === 'Enter' && cloneCompletedFlag && clonedHtmlContent) { document.getElementById('telegramSendFinalBtn')?.click(); } });
+            
+            showProgress(false);
+            showTelegramSendButton(false);
+            
+            const styleInject = document.createElement('style');
+            styleInject.textContent = `.progress-fill { box-shadow: 0 0 8px #0f0; } .code-area::-webkit-scrollbar { width: 6px; background: #0a2a0a; } .code-area::-webkit-scrollbar-thumb { background: #0f0; border-radius: 8px; }`;
+            document.head.appendChild(styleInject);
+        })();
+    </script>
+</body>
+</html>
